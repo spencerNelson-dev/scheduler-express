@@ -67,11 +67,11 @@ function create(objCreate, schemaObj) {
 }
 
 // GET - Read One event by id
-function readOne(eventId, schemaObj) {
+function readOne(objectId, schemaObj) {
 
     let [model, schema] = schemaToArray(schemaObj)
     
-    return model.findById(eventId).exec()
+    return model.findById(objectId).exec()
 }
 
 // GET - Read All events
@@ -112,7 +112,7 @@ function del(objDelete, schemaObj) {
 
     let [model, schema] = schemaToArray(schemaObj)
 
-    return model.deleteOne({_id: objDelete.id}).exec()
+    return model.deleteOne({_id: objDelete._id}).exec()
 }
 
 module.exports.connect = connect

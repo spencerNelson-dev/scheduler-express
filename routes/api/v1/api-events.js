@@ -20,11 +20,11 @@ router.get('/all', function (req, res, next) {
 })
 
 //Get event by id
-router.get('/:id', function (req,res,next){
+router.get('/:id', function (req, res, next) {
 
     let eventId = req.params.id
 
-    db.readOne(eventId,dbEvents)
+    db.readOne(eventId, dbEvents)
         .then(response => {
 
             res.json(response)
@@ -36,7 +36,7 @@ router.get('/:id', function (req,res,next){
 })
 
 //POST - Create new event
-router.post('/new', function (req,res,next){
+router.post('/new', function (req, res, next) {
 
     let newEvent = req.body
 
@@ -50,6 +50,33 @@ router.post('/new', function (req,res,next){
         .catch(err => {
             res.send(`Event was not created`)
         })
+})
+
+//DELETE - Delete event by ide
+router.delete('/delete/:id', async function (req, res, next) {
+
+    let eventId = req.params.id
+
+    try {
+
+        let foundUser = await db.readOne(eventId, dbEvents)
+
+        console.log(foundUser)
+
+        if (foundUser === null) {
+
+            throw new Error("No user with matching id was found")
+        } else {
+
+            await db.del(foundUser, dbEvents)
+
+            res.json({})
+        }
+
+    } catch (error) {
+
+        res.send(error)
+    }
 })
 
 module.exports = router

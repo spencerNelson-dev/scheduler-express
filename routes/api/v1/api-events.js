@@ -35,4 +35,21 @@ router.get('/:id', function (req,res,next){
         })
 })
 
+//POST - Create new event
+router.post('/new', function (req,res,next){
+
+    let newEvent = req.body
+
+    db.create(newEvent, dbEvents)
+        .then(response => {
+            res.json(response)
+        })
+        .catch(error => {
+            res.status(500).json(error)
+        })
+        .catch(err => {
+            res.send(`Event was not created`)
+        })
+})
+
 module.exports = router

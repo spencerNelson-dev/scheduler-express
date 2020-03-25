@@ -56,9 +56,9 @@ function create(objCreate, schemaObj) {
     //property copy it to new object write the new object
     for (let key in schema.obj){
 
-        if(objCreate.doc.hasOwnProperty(key)){
+        if(objCreate.hasOwnProperty(key)){
 
-            serial[key] = objCreate.doc[key]
+            serial[key] = objCreate[key]
         }
         
     }

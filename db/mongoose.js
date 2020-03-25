@@ -66,12 +66,12 @@ function create(objCreate, schemaObj) {
     return model.create(serial)
 }
 
-// GET - Read One event
-function readOne(objRead, schemaObj) {
+// GET - Read One event by id
+function readOne(eventId, schemaObj) {
 
     let [model, schema] = schemaToArray(schemaObj)
     
-    return model.findById(objRead.id).exec()
+    return model.findById(eventId).exec()
 }
 
 // GET - Read All events

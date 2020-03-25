@@ -94,16 +94,15 @@ function update(objUpdate, schemaObj) {
     //property copy it to new object write the new object
     for (let key in schema.obj){
 
-        if(objUpdate.doc.hasOwnProperty(key)){
+        if(objUpdate.hasOwnProperty(key)){
 
-            serial[key] = objUpdate.doc[key]
+            serial[key] = objUpdate[key]
         }
-        
     }
 
     // {$set: serial} can also be passed as just serial as
     // mongoose will automatically put the atomic operator $set
-    return model.updateOne({_id: objUpdate.id}, {$set: serial}).exec()
+    return model.updateOne({_id: objUpdate._id}, {$set: serial}).exec()
 }
 
 // can't use delete as a function name 

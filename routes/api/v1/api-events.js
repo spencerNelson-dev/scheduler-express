@@ -52,7 +52,7 @@ router.post('/new', function (req, res, next) {
         })
 })
 
-//DELETE - Delete event by ide
+//DELETE - Delete event by id
 router.delete('/delete/:id', async function (req, res, next) {
 
     let eventId = req.params.id
@@ -76,6 +76,41 @@ router.delete('/delete/:id', async function (req, res, next) {
     } catch (error) {
 
         res.send(error)
+    }
+})
+
+//PATCH - update event by id
+router.patch('/update/:id', async function (req, res, next) {
+
+    // get the id from the params
+    let eventId = req.params.id
+
+    // get the sent changes from the body
+    let eventChanges = req.body
+
+    // add the id to the changes
+    eventChanges._id = eventId
+
+    try {
+
+        let response = await db.readOne(eventId, dbEvents)
+
+        if (response == null) {
+
+            throw new Error("Not Found")
+
+        } else {
+
+            // if found
+            await db.update(eventChanges, dbEvents)
+
+            res.json(await db.readOne(eventId, dbEvents))
+        }
+
+    } catch (error) {
+
+        console.log(error)
+        res.status(500).json(error)
     }
 })
 

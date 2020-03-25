@@ -18,3 +18,5 @@ router.get('/all', function (req, res, next) {
             res.json(500)
         })
 })
+
+module.exports = router

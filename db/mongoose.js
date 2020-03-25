@@ -75,7 +75,7 @@ function readOne(objRead, schemaObj) {
 }
 
 // GET - Read All events
-function readAll(objRead, schemaObj){
+function readAll(schemaObj){
 
     let [model, schema] = schemaToArray(schemaObj)
 

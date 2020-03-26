@@ -7,15 +7,12 @@ require('dotenv').config()
 const db = require('./db/mongoose')
 const cors = require('cors')
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+//var indexRouter = require('./routes/index');
+//var usersRouter = require('./routes/users');
 
 const eventsRouter = require('./routes/api/v1/api-events')
 
 var app = express();
-
-db.connect(app.locals)
-  .then(dbConnection => {
 
     // view engine setup
     app.set('views', path.join(__dirname, 'views'));
@@ -49,15 +46,10 @@ db.connect(app.locals)
     });
 
     // clean up function
-    process.on('SIGINT', () => {
-      db.close()
-      console.log('DBClosed')
-      process.exit()
-    })
-
-  }) // end of connect
-  .catch(error => {
-    console.log(error)
-  })
+    // process.on('SIGINT', () => {
+    //   db.close()
+    //   console.log('DBClosed')
+    //   process.exit()
+    // })
 
 module.exports = app;

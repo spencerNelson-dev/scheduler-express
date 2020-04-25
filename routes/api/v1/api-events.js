@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const db = require('../../../db/mongoose')
-const dbEvents = require('../../../models/eventsModel')
+// const db = require('../../../db/mongoose')
+// const dbEvents = require('../../../models/eventsModel')
 const dbPost = require('../../../db/postgres')
 
 // //Get all events
